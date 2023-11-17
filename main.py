@@ -12,9 +12,8 @@ class Characeter_sheet():
         self.charisma: int = charisma
         
     def print_stats(self):
-        for arg in [1, 2]:
-            print(arg)
-        return self.name, self.speed
+        for args in vars(new_char).items():
+            print(args)
 
 
 def main():
@@ -23,5 +22,4 @@ def main():
 
 if __name__ == "__main__":
     new_char = Characeter_sheet(name = "Chriss", speed = 40, strenght = 10, dexteriti=10, constitution=10, wisdom=10, inteligenc=10, charisma=10)
-    for args in vars(new_char).items():
-        print(args)
+    new_char.print_stats
