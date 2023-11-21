@@ -1,15 +1,15 @@
 
 
 class Characeter_sheet():
-    def __init__(self, name, speed, strenght, dexteriti, constitution, wisdom, inteligenc, charisma, race, clas) -> None:
+    def __init__(self, name, speed, str_, dex_, con_, wis_, int_, cha_, race, clas) -> None:
         self.name: str = name
         self.speed: int = speed
-        self.strenght: int = strenght
-        self.dexteriti: int = dexteriti
-        self.constitution: int = constitution
-        self.wisdom: int = wisdom
-        self.inteligenc: int = inteligenc
-        self.charisma: int = charisma
+        self.str_: int = str_
+        self.dex_: int = dex_
+        self.con_: int = con_
+        self.wis_: int = wis_
+        self.int_: int = int_
+        self.cha_: int = cha_
         self.clas: str = clas
         self.race: str = race
 
@@ -20,7 +20,7 @@ class Characeter_sheet():
     def stats_modifier(self):
         stat_mod_dictionary = {}
         for stat_name, stat in vars(self).items():
-            if stat_name in ["strenght", "dexteriti", "constitution", "wisdom", "inteligenc", "charisma"]:
+            if stat_name in ["str_", "dex_", "con_", "wis_", "int_", "cha_"]:
                 stat_mod = (stat - 10) / 2
                 if stat_mod % 1 != 0:
                     stat_mod = stat_mod - 0.5
@@ -31,28 +31,28 @@ class Characeter_sheet():
         stat_mod_dicttionary = self.stats_modifier()
         
         skills ={
-                "athletics": stat_mod_dicttionary["strenght"],
-                "initiativ": stat_mod_dicttionary["dexteriti"],
-                "acrobatics": stat_mod_dicttionary["dexteriti"],
-                "sleight_of_hand": stat_mod_dicttionary["dexteriti"],
-                "stealth": stat_mod_dicttionary["dexteriti"],
-                "arcana": stat_mod_dicttionary["inteligenc"],
-                "history": stat_mod_dicttionary["inteligenc"],
-                "investigation": stat_mod_dicttionary["inteligenc"],
-                "nature": stat_mod_dicttionary["inteligenc"],
-                "religion": stat_mod_dicttionary["inteligenc"],
-                "animal handling": stat_mod_dicttionary["wisdom"],
-                "insight": stat_mod_dicttionary["wisdom"],
-                "medicine": stat_mod_dicttionary["wisdom"],
-                "perception": stat_mod_dicttionary["wisdom"],
-                "survival": stat_mod_dicttionary["wisdom"],
-                "deception": stat_mod_dicttionary["charisma"],
-                "intimidation": stat_mod_dicttionary["charisma"],
-                "performance": stat_mod_dicttionary["charisma"],
-                "persuasion": stat_mod_dicttionary["charisma"],
-                "weapons_dexteriti": stat_mod_dicttionary["dexteriti"],
-                "weapons_strenght": stat_mod_dicttionary["strenght"],
-                "initiaiv": stat_mod_dicttionary["dexteriti"],
+                "athletics": stat_mod_dicttionary["str_"],
+                "initiativ": stat_mod_dicttionary["dex_"],
+                "acrobatics": stat_mod_dicttionary["dex_"],
+                "sleight_of_hand": stat_mod_dicttionary["dex_"],
+                "stealth": stat_mod_dicttionary["dex_"],
+                "arcana": stat_mod_dicttionary["int_"],
+                "history": stat_mod_dicttionary["int_"],
+                "investigation": stat_mod_dicttionary["int_"],
+                "nature": stat_mod_dicttionary["int_"],
+                "religion": stat_mod_dicttionary["int_"],
+                "animal handling": stat_mod_dicttionary["wis_"],
+                "insight": stat_mod_dicttionary["wis_"],
+                "medicine": stat_mod_dicttionary["wis_"],
+                "perception": stat_mod_dicttionary["wis_"],
+                "survival": stat_mod_dicttionary["wis_"],
+                "deception": stat_mod_dicttionary["cha_"],
+                "intimidation": stat_mod_dicttionary["cha_"],
+                "performance": stat_mod_dicttionary["cha_"],
+                "persuasion": stat_mod_dicttionary["cha_"],
+                "weapons_dex_": stat_mod_dicttionary["dexteriti"],
+                "weapons_str_": stat_mod_dicttionary["strenght"],
+                "initiaiv": stat_mod_dicttionary["dex_"],
                 }
 
         for skill in skills:
@@ -64,12 +64,12 @@ class Characeter_sheet():
     def saving_throw_modifier(self, proficient: int=2, profficient_in: list = []):
         stat_mod_dictionary = self.stats_modifier()
         save_modifiers = {
-                         "str_save": stat_mod_dictionary["strenght"],
-                         "dex_save": stat_mod_dictionary["dexteriti"],
-                         "con_save": stat_mod_dictionary["constitution"],
-                         "wis_save": stat_mod_dictionary["wisdom"],
-                         "int_save": stat_mod_dictionary["inteligenc"],
-                         "cha_save": stat_mod_dictionary["charisma"],
+                         "str__save": stat_mod_dictionary["str_"],
+                         "dex_save": stat_mod_dictionary["dex_"],
+                         "con_save": stat_mod_dictionary["con_"],
+                         "wis_save": stat_mod_dictionary["wis_"],
+                         "int_save": stat_mod_dictionary["int_"],
+                         "cha_save": stat_mod_dictionary["cha_"],
                          }
         for save in save_modifiers:
             if save in profficient_in:
@@ -83,8 +83,8 @@ def main():
 
 
 if __name__ == "__main__":
-    new_char = Characeter_sheet(name = "Chriss", speed = 40, strenght = 14, dexteriti=7, constitution=10, wisdom=10, inteligenc=10, charisma=10, race="Human", clas="Fighter")
+    new_char = Characeter_sheet(name = "Chriss", speed = 40, str_ = 14, dex_=7, con_=10, wis_=10, int_=10, cha_=10, race="Human", clas="Fighter")
     chriss_skills = new_char.skills_modifiers()
     chriss_skills["athletics"] = 10
     print(chriss_skills)
-    print(new_char.saving_throw_modifier(profficient_in=["str_save", "con_save"]))
+    print(new_char.saving_throw_modifier(profficient_in=["str__save", "con_save"]))
